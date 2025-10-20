@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Reservas Online | Envío directo a WhatsApp</title>
+  <meta name="description" content="Reserva vuelos, paquetes turísticos, hoteles o autos. Confirmación por WhatsApp en un clic. Estilo Trip.com / Booking, 100% responsive." />
+  <meta property="og:title" content="Reservas Online | Confirmación por WhatsApp" />
+  <meta property="og:description" content="Reserva en segundos y envía tu solicitud por WhatsApp. Rápido, claro y sin fricción." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://picsum.photos/1200/630?random=5" />
+  <meta name="theme-color" content="#0ea5e9" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    html,body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Apple Color Emoji","Segoe UI Emoji"}
+    .glass{backdrop-filter: blur(10px); background: rgba(255,255,255,.75)}
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebSite",
+    "name":"Reservas Online",
+    "url":"https://TU_USUARIO.github.io/TU_REPO/",
+    "potentialAction":{"@type":"SearchAction","target":"https://wa.me/34675570566?text={search_term_string}","query-input":"required name=search_term_string"}
+  }
+  </script>
+</head>
+<body class="bg-slate-50 text-slate-900">
+  <!-- NAV -->
+  <header class="sticky top-0 z-40 bg-white/90 backdrop-blur border-b border-slate-200">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <div class="w-8 h-8 rounded-2xl bg-sky-500"></div>
+        <span class="font-semibold">Reservas</span>
+      </div>
+      <nav class="hidden md:flex items-center gap-6 text-sm">
+        <a href="#servicios" class="hover:text-sky-600">Servicios</a>
+        <a href="#beneficios" class="hover:text-sky-600">Beneficios</a>
+        <a href="#faq" class="hover:text-sky-600">FAQ</a>
+      </nav>
+      <a href="#form" class="px-3 py-2 rounded-xl bg-sky-600 text-white text-sm font-semibold hover:bg-sky-700">Reservar</a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="relative">
+    <img src="https://images.unsplash.com/photo-1502920917128-1aa500764b8a?q=80&w=1600&auto=format&fit=crop" alt="Hero" class="w-full h-[56vh] object-cover">
+    <div class="absolute inset-0 bg-slate-900/40"></div>
+    <div class="absolute inset-0">
+      <div class="max-w-6xl mx-auto px-4 h-full flex items-center">
+        <div class="glass rounded-3xl p-6 md:p-10 max-w-xl shadow-xl">
+          <h1 class="text-3xl md:text-4xl font-bold text-slate-900">Reserva en minutos. Confirmación por WhatsApp.</h1>
+          <p class="mt-3 text-slate-700">Vuelos, paquetes, hoteles y autos. Sin fricción, estilo Trip.com / Booking, pero con cierre directo por WhatsApp.</p>
+          <div class="mt-4 flex flex-wrap gap-2 text-xs">
+            <span class="bg-emerald-100 text-emerald-700 px-2 py-1 rounded-lg">24/7</span>
+            <span class="bg-sky-100 text-sky-700 px-2 py-1 rounded-lg">Mejor precio</span>
+            <span class="bg-amber-100 text-amber-700 px-2 py-1 rounded-lg">Confirmación rápida</span>
+          </div>
+          <a href="#form" class="mt-5 inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-sky-600 text-white font-semibold hover:bg-sky-700">Iniciar reserva →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICIOS -->
+  <section id="servicios" class="max-w-6xl mx-auto px-4 py-12">
+    <h2 class="text-2xl md:text-3xl font-bold">¿Qué quieres reservar?</h2>
+    <div class="mt-6 grid md:grid-cols-4 gap-4">
+      <button data-service="vuelos" class="service-btn px-4 py-4 rounded-2xl border bg-white hover:border-sky-500 text-left">
+        <div class="text-lg font-semibold">✈️ Vuelos</div>
+        <p class="text-sm text-slate-600">Chárter y regulares</p>
+      </button>
+      <button data-service="paquetes" class="service-btn px-4 py-4 rounded-2xl border bg-white hover:border-sky-500 text-left">
+        <div class="text-lg font-semibold">🧳 Paquetes</div>
+        <p class="text-sm text-slate-600">Tour + hotel + traslados</p>
+      </button>
+      <button data-service="hoteles" class="service-btn px-4 py-4 rounded-2xl border bg-white hover:border-sky-500 text-left">
+        <div class="text-lg font-semibold">🏨 Hoteles</div>
+        <p class="text-sm text-slate-600">Todas las categorías</p>
+      </button>
+      <button data-service="autos" class="service-btn px-4 py-4 rounded-2xl border bg-white hover:border-sky-500 text-left">
+        <div class="text-lg font-semibold">🚗 Autos</div>
+        <p class="text-sm text-slate-600">Con o sin chofer</p>
+      </button>
+    </div>
+  </section>
+
+  <!-- FORM -->
+  <section id="form" class="max-w-6xl mx-auto px-4 pb-16">
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="md:col-span-2">
+        <div class="bg-white border rounded-3xl p-6 shadow-sm">
+          <h3 class="text-xl font-semibold">Completa tu solicitud</h3>
+          <p class="text-sm text-slate-600">Te responderemos por WhatsApp con disponibilidad y precio.</p>
+
+          <form id="bookingForm" class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label class="text-sm font-medium">Nombre y Apellido</label>
+              <input required type="text" id="nombre" class="mt-1 w-full rounded-xl border-slate-300 focus:border-sky-500 focus:ring-sky-500" placeholder="Tu nombre" />
+            </div>
+            <div>
+              <label class="text-sm font-medium">WhatsApp</label>
+              <input required type="tel" id="telefono" class="mt-1 w-full rounded-xl border-slate-300 focus:border-sky-500 focus:ring-sky-500" placeholder="Ej: +34 600 000 000" />
+            </div>
+
+            <div>
+              <label class="text-sm font-medium">Servicio</label>
+              <select id="servicio" class="mt-1 w-full rounded-xl border-slate-300 focus:border-sky-500 focus:ring-sky-500">
+                <option value="Vuelos">Vuelos</option>
+                <option value="Paquetes">Paquetes</option>
+                <option value="Hoteles">Hoteles</option>
+                <option value="Autos">Autos</option>
+              </select>
+            </div>
+            <div>
+              <label class="text-sm font-medium">Pasajeros</label>
+              <input required type="number" id="pasajeros" min="1" value="1" class="mt-1 w-full rounded-xl border-slate-300 focus:border-sky-500 focus:ring-sky-500" />
+            </div>
+
+            <div>
+              <label class="text-sm font-medium">Origen</label>
+              <input required type="text" id="origen" class="mt-1 w-full rounded-xl border-slate-300 focus:border-sky-500 focus:ring-sky-500" placeholder="Ciudad de salida" />
+            </div>
+            <div>
+              <label class="text-sm font-medium">Destino</label>
+              <input required type="text" id="destino" class="mt-1 w-full rounded-xl border-slate-300 focus:border-sky-500 focus:ring-sky-500" placeholder="Ciudad de llegada" />
+            </div>
+
+            <div>
+              <label class="text-sm font-medium">Fecha ida</label>
+              <input required type="date" id="fechaIda" class="mt-1 w-full rounded-xl border-slate-300 focus:border-sky-500 focus:ring-sky-500" />
+            </div>
+            <div>
+              <label class="text-sm font-medium">Fecha regreso (opcional)</label>
+              <input type="date" id="fechaVuelta" class="mt-1 w-full rounded-xl border-slate-300 focus:border-sky-500 focus:ring-sky-500" />
+            </div>
+
+            <div class="md:col-span-2">
+              <label class="text-sm font-medium">Notas (opcional)</label>
+              <textarea id="notas" rows="3" class="mt-1 w-full rounded-xl border-slate-300 focus:border-sky-500 focus:ring-sky-500" placeholder="Equipaje, preferencias, horarios, aerolíneas…"></textarea>
+            </div>
+
+            <div class="md:col-span-2 flex items-center justify-between gap-3">
+              <p class="text-xs text-slate-500">Al enviar aceptas la política de privacidad y el contacto por WhatsApp.</p>
+              <button type="submit" class="px-5 py-3 rounded-xl bg-sky-600 text-white font-semibold hover:bg-sky-700">Enviar por WhatsApp</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <aside class="space-y-6">
+        <div class="bg-white border rounded-3xl p-6 shadow-sm" id="beneficios">
+          <h4 class="font-semibold">Beneficios</h4>
+          <ul class="mt-3 space-y-2 text-sm text-slate-700 list-disc list-inside">
+            <li>Precios dinámicos y ofertas</li>
+            <li>Atención humana 24/7 por WhatsApp</li>
+            <li>Pagos seguros y flexibles</li>
+            <li>Gestión de cambios y asistencia</li>
+          </ul>
+        </div>
+        <div class="bg-white border rounded-3xl p-6 shadow-sm">
+          <h4 class="font-semibold">Confianza</h4>
+          <div class="mt-3 flex items-center gap-3 text-emerald-700 text-sm">
+            <span>⭐️⭐️⭐️⭐️⭐️</span>
+            <span>4.9/5 · +1.500 viajeros</span>
+          </div>
+          <p class="mt-2 text-xs text-slate-500">Reseñas verificadas y soporte real.</p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="bg-white border-t">
+    <div class="max-w-6xl mx-auto px-4 py-12">
+      <h3 class="text-xl md:text-2xl font-bold">Preguntas frecuentes</h3>
+      <div class="mt-6 divide-y">
+        <details class="group py-4">
+          <summary class="flex cursor-pointer items-center justify-between font-medium">¿Cómo confirmo la reserva? <span class="transition group-open:rotate-180">⌄</span></summary>
+          <p class="mt-2 text-sm text-slate-600">Nos envías los datos por WhatsApp, validamos disponibilidad y precio, y te enviamos el link de pago o instrucciones.</p>
+        </details>
+        <details class="group py-4">
+          <summary class="flex cursor-pointer items-center justify-between font-medium">¿Puedo pagar en varias cuotas? <span class="transition group-open:rotate-180">⌄</span></summary>
+          <p class="mt-2 text-sm text-slate-600">Sí, según el servicio. Te daremos opciones seguras de pago.</p>
+        </details>
+        <details class="group py-4">
+          <summary class="flex cursor-pointer items-center justify-between font-medium">¿Emiten factura? <span class="transition group-open:rotate-180">⌄</span></summary>
+          <p class="mt-2 text-sm text-slate-600">Claro. Te solicitaremos los datos fiscales al confirmar.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="py-10 text-center text-xs text-slate-500">
+    <div class="max-w-6xl mx-auto px-4">
+      <p>© <span id="year"></span> Reservas Online — Todos los derechos reservados.</p>
+      <div class="mt-2"><a href="#" class="hover:text-sky-600">Política de privacidad</a> · <a href="#" class="hover:text-sky-600">Términos</a></div>
+    </div>
+  </footer>
+
+  <script>
+    // === Configuración ===
+    const WHATSAPP_NUMBER = "34675570566"; // Reemplaza por tu número en formato internacional sin + ni espacios
+
+    // Botones de servicios → setean el select del formulario
+    document.querySelectorAll('.service-btn').forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        const v = btn.getAttribute('data-service');
+        const map = {vuelos:'Vuelos', paquetes:'Paquetes', hoteles:'Hoteles', autos:'Autos'};
+        document.getElementById('servicio').value = map[v] || 'Vuelos';
+        window.location.hash = '#form';
+      });
+    });
+
+    // Mínimo hoy para fechas
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('fechaIda').setAttribute('min', today);
+    document.getElementById('fechaVuelta').setAttribute('min', today);
+
+    // Envío a WhatsApp
+    document.getElementById('bookingForm').addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const d = (id)=>document.getElementById(id).value.trim();
+      const payload = {
+        nombre: d('nombre'),
+        telefono: d('telefono'),
+        servicio: d('servicio'),
+        pasajeros: d('pasajeros'),
+        origen: d('origen'),
+        destino: d('destino'),
+        fechaIda: d('fechaIda'),
+        fechaVuelta: d('fechaVuelta'),
+        notas: d('notas')
+      };
+      const texto = `Nueva solicitud de reserva:%0A`+
+        `Nombre: ${payload.nombre}%0A`+
+        `WhatsApp: ${payload.telefono}%0A`+
+        `Servicio: ${payload.servicio}%0A`+
+        `Pasajeros: ${payload.pasajeros}%0A`+
+        `Origen: ${payload.origen}%0A`+
+        `Destino: ${payload.destino}%0A`+
+        `Fecha ida: ${payload.fechaIda}%0A`+
+        `Fecha regreso: ${payload.fechaVuelta || '-'}%0A`+
+        `Notas: ${encodeURIComponent(payload.notas || '-')}`;
+      const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${texto}`;
+      window.open(url, '_blank');
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
