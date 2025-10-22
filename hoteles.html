@@ -1,1 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hoteles | Reservas Online</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<header>
+  <div class="container" style="display:flex;justify-content:space-between;align-items:center;">
+    <div style="display:flex;align-items:center;gap:10px;">
+      <div style="width:32px;height:32px;border-radius:50%;background-color:#0ea5e9;"></div>
+      <span style="font-weight:bold;">Reservas · Hoteles</span>
+    </div>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="hoteles.html">Hoteles</a>
+      <a href="autos.html">Autos</a>
+      <a href="paquetes.html">Paquetes</a>
+    </nav>
+    <a href="#form" class="btn-primary">Solicitar</a>
+  </div>
+</header>
+
+<section class="hero" style="background-color:#87CEEB;">
+  <div class="hero-box">
+    <h1>HOTEL IDEAL. PRECIO JUSTO.</h1>
+    <h2>Confirmación por WhatsApp en minutos.</h2>
+    <a href="#form" class="btn-primary" style="margin-top:20px;padding:12px 25px;">Buscar hotel →</a>
+  </div>
+</section>
+
+<main class="container">
+  <div class="main-content">
+    <section class="form-section" id="form">
+      <h3 style="font-size:20px;margin-bottom:5px;">Solicitud de Hotel</h3>
+      <p style="font-size:14px;color:#666;margin-bottom:20px;">Cuéntanos fechas y preferencias. Te enviamos opciones.</p>
+
+      <form id="hotelForm">
+        <div class="form-row">
+          <div class="form-group"><label>Nombre y Apellido</label><input required id="h_nombre" type="text" placeholder="Tu nombre" /></div>
+          <div class="form-group"><label>WhatsApp</label><input required id="h_tel" type="tel" placeholder="Ej: +34 600 000 000" /></div>
+        </div>
+        <div class="form-group">
+          <label>Ciudad o Hotel</label><input required id="h_ciudad" type="text" placeholder="Ej: Madrid / Hotel X" />
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Check-in</label><input required id="h_checkin" type="date" /></div>
+          <div class="form-group"><label>Check-out</label><input required id="h_checkout" type="date" /></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Habitaciones</label><input required id="h_rooms" type="number" min="1" value="1" /></div>
+          <div class="form-group"><label>Huéspedes</label><input required id="h_guests" type="number" min="1" value="2" /></div>
+        </div>
+        <div class="form-group">
+          <label>Preferencias (opcional)</label>
+          <textarea id="h_notas" rows="3" placeholder="Desayuno, camas, zona, presupuesto..."></textarea>
+        </div>
+        <div class="form-submit-row">
+          <p style="font-size:10px;color:#999;">Al enviar aceptas privacidad y contacto por WhatsApp.</p>
+          <button class="btn-primary" type="submit" style="padding:10px 20px;">Enviar por WhatsApp</button>
+        </div>
+      </form>
+    </section>
+
+    <aside class="aside-section">
+      <div class="aside-box">
+        <h4 style="font-size:16px;margin-top:0;">Ventajas</h4>
+        <ul style="padding-left:20px;font-size:14px;color:#555;">
+          <li>Precios dinámicos</li><li>Atención 24/7</li><li>Pagos seguros</li><li>Gestión de cambios</li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<footer><div class="container"><p>© <span id="year"></span> Reservas Online</p></div></footer>
+
+<script src="app.js"></script>
+<script>
+  setMinToday('#h_checkin, #h_checkout');
+
+  document.getElementById('hotelForm')?.addEventListener('submit', (e)=>{
+    e.preventDefault();
+    const v = id => document.getElementById(id)?.value?.trim() || '';
+    if (v('h_checkout') && v('h_checkin') && v('h_checkout') < v('h_checkin')) {
+      alert('El check-out no puede ser anterior al check-in.'); return;
+    }
+    const kv = [
+      ['Nombre', v('h_nombre')],
+      ['WhatsApp', v('h_tel')],
+      ['Servicio', 'Hoteles'],
+      ['Ciudad/Hotel', v('h_ciudad')],
+      ['Check-in', v('h_checkin')],
+      ['Check-out', v('h_checkout')],
+      ['Habitaciones', v('h_rooms')],
+      ['Huéspedes', v('h_guests')],
+      ['Preferencias', v('h_notas')]
+    ];
+    openWhatsAppFromPayload('Solicitud de Hotel', kv);
+  });
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
 
