@@ -1,53 +1,95 @@
-/* ====== Base / Tokens ====== */
-:root{
-  --bg:#F6F8FB;
-  --surface:#FFFFFF;
-  --ink:#0F172A;
-  --muted:#64748B;
-  --line:#E2E8F0;
-  --primary:#0EA5E9;
-  --primary-600:#0284C7;
-  --success:#22C55E;
-  --warning:#F59E0B;
-  --radius-sm:8px;
-  --radius-md:12px;
-  --radius-lg:18px;
-  --shadow-sm:0 1px 2px rgba(16,24,40,.06);
-  --shadow-md:0 8px 24px rgba(15,23,42,.08);
-  --shadow-lg:0 30px 60px rgba(2,8,23,.12);
+/* ====== NUEVAS CLASES (Añadir al final de styles.css) ====== */
+
+/* --- Header / Logo --- */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--ink); /* Hereda el color de body */
+  text-decoration: none; /* Quita el subrayado del enlace */
+}
+.logo-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--primary); /* Usa tu variable! */
+}
+.logo-text {
+  font-weight: 700;
+  font-size: 18px; /* Un poco más grande para el logo */
 }
 
-*{box-sizing:border-box}
-html,body{height:100%}
-body{
-  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Inter, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
-  margin:0; color:var(--ink); background:var(--bg); line-height:1.6;
-  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+/* --- Estructura y Títulos de Sección --- */
+main {
+  /* main es un "block" por defecto, no necesita display:block */
+  /* Esta etiqueta es para semántica y accesibilidad */
+  padding-top: 6px; /* El padding que tenías en la sección servicios */
 }
-img{max-width:100%; display:block}
-a{color:var(--primary); text-decoration:none}
-a:hover{color:var(--primary-600)}
 
-/* ====== Layout ====== */
-.container{max-width:1000px; margin:0 auto; padding:0 16px}
-
-/* ====== Header / Nav ====== */
-header{
-  position:sticky; top:0; z-index:50;
-  background:rgba(255,255,255,.92); backdrop-filter:saturate(180%) blur(8px);
-  border-bottom:1px solid var(--line);
+.section {
+  padding-bottom: 30px; /* El padding que tenías en la sección form */
 }
-header .container{display:flex; align-items:center; justify-content:space-between; padding:12px 16px}
-header nav{display:flex; gap:24px; align-items:center}
-header nav a{color:var(--muted); font-weight:500;}
-header nav a:hover{color:var(--ink)}
-header .btn-primary{margin-left:12px}
 
-/* ====== Buttons ====== */
-.btn-primary{
-  background:var(--primary);
-  color:#fff; padding:10px 18px; border-radius:9999px; display:inline-block;
-  font-weight:700; box-shadow:var(--shadow-sm); border:1px solid transparent;
-  transition:transform .05s ease, background .2s ease, box-shadow .2s ease;
+.section-subtitle {
+  margin-top: -4px;
+  margin-bottom: 20px; /* Estilo combinado de tus dos subtítulos */
 }
-.btn-
+
+.form-title {
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+/* --- Aside / Beneficios y Confianza --- */
+.aside-title {
+  font-size: 16px;
+  margin-top: 0;
+  margin-bottom: 12px;
+}
+.benefit-list {
+  padding-left: 20px;
+  font-size: 14px;
+  color: #555;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px; /* Mejor que el line-height por defecto */
+}
+.trust-rating {
+  margin-top: 10px;
+  color: #15803D;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column; /* Apila estrellas y texto */
+  gap: 4px;
+}
+.trust-caption {
+  margin-top: 8px;
+  font-size: 12px;
+  color: #999;
+  margin-bottom: 0;
+}
+
+/* --- FAQ --- */
+.faq-icon {
+  font-size: 20px;
+  color: var(--primary);
+  transition: transform 0.2s ease;
+}
+.faq-details[open] > summary .faq-icon {
+  transform: rotate(180deg);
+}
+
+/* --- Footer --- */
+.footer-links {
+  margin-top: 5px;
+}
+.footer-links a {
+  color: #94A3B8;
+  text-decoration: none;
+  font-size: 12px;
+}
+.footer-links a:hover {
+  color: var(--muted);
+  text-decoration: underline;
+}
