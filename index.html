@@ -1,210 +1,109 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Reservas Online | Envío directo a WhatsApp</title>
-  <meta name="description" content="Reserva en minutos y confirma por WhatsApp. Vuelos, paquetes, hoteles y autos. Sin fricción." />
-  
-  <link rel="stylesheet" href="styles.css" />
-  <script src="app.js" defer></script>
-</head>
-<body>
+<section id="destacados" class="section">
+  <div class="container">
+    <h2 class="section-title">Destinos destacados</h2>
+    <p class="text-muted section-subtitle">Haz clic para prellenar el formulario.</p>
 
-  <header>
-    <div class="container">
-      <a href="/" class="logo">
-        <div class="logo-icon"></div>
-        <span class="logo-text">Reservas</span>
-      </a>
-      <nav>
-        <a href="#servicios">Servicios</a>
-        <a href="#beneficios">Beneficios</a>
-        <a href="#faq">FAQ</a>
-      </nav>
-      <a href="#form" class="btn-primary">Reservar</a>
-    </div>
-  </header>
+    <div class="destination-grid">
 
-  <main>
-    <section class="hero">
-      <div class="hero-box">
-        <h1>Reserva en minutos.<br/>Confirmación por WhatsApp.</h1>
-        <h2>Vuelos, paquetes, hoteles y autos. Sin fricción, estilo Trip/Booking, con cierre directo por WhatsApp.</h2>
-        <div class="badge-row">
-          <span class="badge badge-24">24/7</span>
-          <span class="badge badge-best">Mejor precio</span>
-          <span class="badge badge-fast">Confirmación rápida</span>
+      <button class="destination-card" data-destino="Cuba">
+        <figure class="dest-card-image">
+          <img src="img/dest-cuba.jpg" alt="Cuba">
+          <span class="dest-card-price">desde <strong>689 €</strong></span>
+        </figure>
+        <div class="dest-card-content">
+          <h3 class="dest-card-title">Cuba</h3>
+          <p class="dest-card-subtext">La Habana · Varadero · Cayo Santa Maria</p>
         </div>
-        <div class="cta-wrap">
-          <a href="#form" class="btn-primary">Iniciar reserva →</a>
+      </button>
+
+      <button class="destination-card" data-destino="República Dominicana">
+        <figure class="dest-card-image">
+          <img src="img/dest-domicana.jpg" alt="República Dominicana">
+          <span class="dest-card-price">desde <strong>749 €</strong></span>
+        </figure>
+        <div class="dest-card-content">
+          <h3 class="dest-card-title">República Dominicana</h3>
+          <p class="dest-card-subtext">Punta Cana · Bayahibe · La Romana</p>
         </div>
+      </button>
+
+      <button class="destination-card" data-destino="Venezuela (Margarita/Los Roques)">
+        <figure class="dest-card-image">
+          <img src="https://picsum.photos/id/1011/400/250" alt="Venezuela">
+          <span class="dest-card-price">desde <strong>729 €</strong></span>
+        </figure>
+        <div class="dest-card-content">
+          <h3 class="dest-card-title">Venezuela</h3>
+          <p class="dest-card-subtext">Isla Margarita · Caracas · Los Roques</p>
+        </div>
+      </button>
+
+      <button class="destination-card" data-destino="Miami, USA">
+        <figure class="dest-card-image">
+          <img src="img/dest-miami.jpg" alt="Miami">
+          <span class="dest-card-price">desde <strong>599 €</strong></span>
+        </figure>
+        <div class="dest-card-content">
+          <h3 class="dest-card-title">Miami</h3>
+          <p class="dest-card-subtext">South Beach · Downtown · Wynwood</p>
+        </div>
+      </button>
+
+      <button class="destination-card" data-destino="Madrid, España">
+        <figure class="dest-card-image">
+          <img src="https://picsum.photos/id/1043/400/250" alt="Madrid">
+          <span class="dest-card-price">desde <strong>199 €</strong></span>
+        </figure>
+        <div class="dest-card-content">
+          <h3 class="dest-card-title">Madrid</h3>
+          <p class="dest-card-subtext">España · Puerta del Sol · Museos</p>
+        </div>
+      </button>
+
+      <button class="destination-card" data-destino="Alemania">
+        <figure class="dest-card-image">
+          <img src="https://picsum.photos/id/103/400/250" alt="Alemania">
+          <span class="dest-card-price">desde <strong>350 €</strong></span>
+        </figure>
+        <div class="dest-card-content">
+          <h3 class="dest-card-title">Alemania</h3>
+          <p class="dest-card-subtext">Berlín · Múnich · Frankfurt</p>
+        </div>
+      </button>
+      
+      <button class="destination-card" data-destino="Nicaragua">
+        <figure class="dest-card-image">
+          <img src="https://picsum.photos/id/1048/400/250" alt="Nicaragua">
+          <span class="dest-card-price">desde <strong>810 €</strong></span>
+        </figure>
+        <div class="dest-card-content">
+          <h3 class="dest-card-title">Nicaragua</h3>
+          <p class="dest-card-subtext">Granada · Ometepe · San Juan del Sur</p>
+        </div>
+      </button>
+      
+      <button class="destination-card" data-destino="Suriname">
+        <figure class="dest-card-image">
+          <img src="https://picsum.photos/id/1050/400/250" alt="Suriname">
+          <span class="dest-card-price">desde <strong>890 €</strong></span>
+        </figure>
+        <div class="dest-card-content">
+          <h3 class="dest-card-title">Suriname</h3>
+          <p class="dest-card-subtext">Paramaribo · Selva Amazónica</p>
+        </div>
+      </button>
+      
+      <button class="destination-card" data-destino="Guyana">
+        <figure class="dest-card-image">
+          <img src="https://picsum.photos/id/1054/400/250" alt="Guyana">
+          <span class="dest-card-price">desde <strong>930 €</strong></span>
+        </figure>
+        <div class="dest-card-content">
+          <h3 class="dest-card-title">Guyana</h3>
+          <p class="dest-card-subtext">Cataratas Kaieteur · Georgetown</p>
+        </div>
+      </button>
+
       </div>
-    </section>
-
-    <div class="container">
-      <section id="servicios" class="section">
-        <h2 class="section-title">¿Qué quieres reservar?</h2>
-        <p class="text-muted section-subtitle">Selecciona y baja al formulario.</p>
-        <div class="service-grid">
-          
-          <button data-service="vuelos" class="service-btn">
-            <div>✈️ Vuelos</div>
-            <p>Chárter y regulares</p>
-          </button>
-          
-          <a href="paquetes.html" class="service-btn">
-            <div>🧳 Paquetes</div>
-            <p>Tour + hotel + traslados</p>
-          </a>
-          
-          <button data-service="hoteles" class="service-btn">
-            <div>🏨 Hoteles</div>
-            <p>Todas las categorías</p>
-          </button>
-          
-          <button data-service="autos" class="service-btn">
-            <div>🚗 Autos</div>
-            <p>Con o sin chofer</p>
-          </button>
-        </div>
-      </section>
-
-      <section id="form" class="section">
-        <div class="main-content">
-          <div class="form-section">
-            <h3 class="form-title">Completa tu solicitud</h3>
-            <p class="text-muted section-subtitle">Te responderemos por WhatsApp con disponibilidad y precio.</p>
-
-            <form id="bookingForm">
-              <div class="form-group">
-                <label>Nombre y Apellido</label>
-                <input required type="text" id="nombre" placeholder="Tu nombre completo" />
-              </div>
-            
-              <div class="form-row">
-                <div class="form-group">
-                  <label>WhatsApp (para cotización)</label>
-                  <input required type="tel" id="telefono" placeholder="Ej: +34 600 000 000" />
-                </div>
-                <div class="form-group">
-                  <label>Email</label>
-                  <input required type="email" id="email" placeholder="tu@email.com" />
-                </div>
-              </div>
-            
-              <div class="form-row">
-                <div class="form-group">
-                  <label>Servicio de interés</label>
-                  <select id="servicio">
-                    <option value="Paquetes">Paquetes</option>
-                    <option value="Vuelos">Vuelos</option>
-                    <option value="Hoteles">Hoteles</option>
-                    <option value="Autos">Autos</option>
-                    <option value="Cotización General">Cotización General</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label>Destino</label> 
-                  <input required type="text" id="destino" placeholder="País o ciudad de destino" />
-                </div>
-              </div>
-            
-              <div class="form-group">
-                <label>Ciudad de Origen</label>
-                <input required type="text" id="origen" placeholder="Ciudad de salida" />
-              </div>
-            
-              <div class="form-row">
-                <div class="form-group">
-                  <label>Adultos (+12 años)</label>
-                  <input required type="number" id="adultos" min="1" value="1" />
-                </div>
-                <div class="form-group">
-                  <label>Niños (0-11 años)</label>
-                  <input type="number" id="ninos" min="0" value="0" />
-                </div>
-              </div>
-            
-              <div class="form-row">
-                <div class="form-group">
-                  <label>Fecha ida</label>
-                  <input required type="date" id="fechaIda" />
-                </div>
-                <div class="form-group">
-                  <label>Fecha regreso</label>
-                  <input required type="date" id="fechaVuelta" />
-                </div>
-              </div>
-            
-              <div class="form-group">
-                <label>Estadía</label>
-                <input type="text" id="diasNoches" placeholder="Se calcula automáticamente" disabled class="form-calculated" />
-              </div>
-              
-              <div class="form-group">
-                <label>Especificaciones (opcional)</label>
-                <textarea id="notas" rows="3" placeholder="Hotel preferido, tipo de habitación, aerolínea, si viaja con mascotas, etc."></textarea>
-              </div>
-            
-              <div class="form-submit-row">
-                <p>Al enviar aceptas la política de privacidad y el contacto por WhatsApp.</p>
-                <button type="submit" class="btn-primary">Enviar Cotización por WhatsApp</button>
-              </div>
-            </form>
-            
-          </div>
-
-          <aside class="aside-section">
-            <div class="aside-box" id="beneficios">
-              <h4 class="aside-title">Beneficios</h4>
-              <ul class="benefit-list">
-                <li>Precios dinámicos y ofertas</li>
-                <li>Atención humana 24/7 por WhatsApp</li>
-                <li>Pagos seguros y flexibles</li>
-                <li>Gestión de cambios y asistencia</li>
-              </ul>
-            </div>
-            <div class="aside-box">
-              <h4 class="aside-title">Confianza</h4>
-              <div class="trust-rating">
-                <span class="trust-stars">⭐️⭐️⭐️⭐️⭐️</span>
-                <span class="trust-score">4.9/5 · +1.500 viajeros</span>
-              </div>
-              <p class="trust-caption">Reseñas verificadas y soporte real.</p>
-            </div>
-          </aside>
-        </div>
-      </section>
-    </div> </main> <section id="faq" class="faq-section">
-    <div class="container">
-      <h3>Preguntas frecuentes</h3>
-      <div>
-        <details class="faq-details">
-          <summary>¿Cómo confirmo la reserva? <span class="faq-icon">▾</span></summary>
-          <p>Nos envías los datos por WhatsApp, validamos disponibilidad y precio, y te enviamos el link de pago o instrucciones.</p>
-        </details>
-        <details class="faq-details">
-          <summary>¿Puedo pagar en varias cuotas? <span class="faq-icon">▾</span></summary>
-          <p>Sí, según el servicio. Te daremos opciones seguras de pago.</p>
-        </details>
-        <details class="faq-details">
-          <summary>¿Emiten factura? <span class="faq-icon">▾</span></summary>
-          <p>Claro. Te solicitaremos los datos fiscales al confirmar.</p>
-        </details>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <div class="container">
-      <p>© <span id="year"></span> Reservas Online — Todos los derechos reservados.</p>
-      <div class="footer-links">
-        <a href="#">Política de privacidad</a> ·
-        <a href="#">Términos</a>
-      </div>
-    </div>
-  </footer>
-
-</body>
-</html>
+  </div>
+</section>
