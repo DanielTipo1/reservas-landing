@@ -1,1 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Paquetes | Reservas Online</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<header>
+  <div class="container" style="display:flex;justify-content:space-between;align-items:center;">
+    <div style="display:flex;align-items:center;gap:10px;">
+      <div style="width:32px;height:32px;border-radius:50%;background-color:#0ea5e9;"></div>
+      <span style="font-weight:bold;">Reservas · Paquetes</span>
+    </div>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="hoteles.html">Hoteles</a>
+      <a href="autos.html">Autos</a>
+      <a href="paquetes.html">Paquetes</a>
+    </nav>
+    <a href="#form" class="btn-primary">Solicitar</a>
+  </div>
+</header>
+
+<section class="hero" style="background-color:#87CEEB;">
+  <div class="hero-box">
+    <h1>TOUR + HOTEL + TRASLADOS.</h1>
+    <h2>Itinerario a medida. Cierre por WhatsApp.</h2>
+    <a href="#form" class="btn-primary" style="margin-top:20px;padding:12px 25px;">Cotizar paquete →</a>
+  </div>
+</section>
+
+<main class="container">
+  <div class="main-content">
+    <section class="form-section" id="form">
+      <h3 style="font-size:20px;margin-bottom:5px;">Solicitud de Paquete</h3>
+      <p style="font-size:14px;color:#666;margin-bottom:20px;">Indica destino, fechas y presupuesto objetivo.</p>
+
+      <form id="packForm">
+        <div class="form-row">
+          <div class="form-group"><label>Nombre y Apellido</label><input required id="p_nombre" type="text" /></div>
+          <div class="form-group"><label>WhatsApp</label><input required id="p_tel" type="tel" placeholder="+34..." /></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Destino</label><input required id="p_destino" type="text" placeholder="Ciudad / país" /></div>
+          <div class="form-group"><label>Pasajeros</label><input required id="p_pax" type="number" min="1" value="2" /></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Fecha salida</label><input required id="p_out" type="date" /></div>
+          <div class="form-group"><label>Fecha regreso</label><input required id="p_back" type="date" /></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Hotel/Categoría (opcional)</label><input id="p_hotel" type="text" placeholder="3★ / 4★ / 5★ / hotel preferido" /></div>
+          <div class="form-group"><label>Presupuesto estimado (opcional)</label><input id="p_budget" type="text" placeholder="€ por persona / total" /></div>
+        </div>
+        <div class="form-group">
+          <label>Notas (opcional)</label>
+          <textarea id="p_notas" rows="3" placeholder="Intereses, tours, traslados, seguro..."></textarea>
+        </div>
+        <div class="form-submit-row">
+          <p style="font-size:10px;color:#999;">Al enviar aceptas privacidad y contacto por WhatsApp.</p>
+          <button class="btn-primary" type="submit" style="padding:10px 20px;">Enviar por WhatsApp</button>
+        </div>
+      </form>
+    </section>
+
+    <aside class="aside-section">
+      <div class="aside-box">
+        <h4 style="font-size:16px;margin-top:0;">Incluye (ejemplo)</h4>
+        <ul style="padding-left:20px;font-size:14px;color:#555;">
+          <li>Vuelos + hotel + traslados</li><li>Asistencia 24/7</li><li>Seguro opcional</li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<footer><div class="container"><p>© <span id="year"></span> Reservas Online</p></div></footer>
+
+<script src="app.js"></script>
+<script>
+  setMinToday('#p_out, #p_back');
+  document.getElementById('packForm')?.addEventListener('submit', (e)=>{
+    e.preventDefault();
+    const g = id => document.getElementById(id)?.value?.trim() || '';
+    if (g('p_back') && g('p_out') && g('p_back') < g('p_out')) {
+      alert('La fecha de regreso no puede ser anterior a la salida.'); return;
+    }
+    const kv = [
+      ['Nombre', g('p_nombre')], ['WhatsApp', g('p_tel')],
+      ['Servicio', 'Paquetes'], ['Destino', g('p_destino')],
+      ['Pasajeros', g('p_pax')], ['Salida', g('p_out')], ['Regreso', g('p_back')],
+      ['Hotel/Categoría', g('p_hotel')], ['Presupuesto', g('p_budget')],
+      ['Notas', g('p_notas')]
+    ];
+    openWhatsAppFromPayload('Solicitud de Paquete', kv);
+  });
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
 
