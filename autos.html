@@ -1,1 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Autos | Reservas Online</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<header>
+  <div class="container" style="display:flex;justify-content:space-between;align-items:center;">
+    <div style="display:flex;align-items:center;gap:10px;">
+      <div style="width:32px;height:32px;border-radius:50%;background-color:#0ea5e9;"></div>
+      <span style="font-weight:bold;">Reservas · Autos</span>
+    </div>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="hoteles.html">Hoteles</a>
+      <a href="autos.html">Autos</a>
+      <a href="paquetes.html">Paquetes</a>
+    </nav>
+    <a href="#form" class="btn-primary">Solicitar</a>
+  </div>
+</header>
+
+<section class="hero" style="background-color:#87CEEB;">
+  <div class="hero-box">
+    <h1>RENTAS SIN FRICCIÓN.</h1>
+    <h2>Entrega flexible. Confirmación por WhatsApp.</h2>
+    <a href="#form" class="btn-primary" style="margin-top:20px;padding:12px 25px;">Reservar auto →</a>
+  </div>
+</section>
+
+<main class="container">
+  <div class="main-content">
+    <section class="form-section" id="form">
+      <h3 style="font-size:20px;margin-bottom:5px;">Solicitud de Auto</h3>
+      <p style="font-size:14px;color:#666;margin-bottom:20px;">Indica ciudad, fechas y edad del conductor.</p>
+
+      <form id="autoForm">
+        <div class="form-row">
+          <div class="form-group"><label>Nombre y Apellido</label><input required id="a_nombre" type="text" /></div>
+          <div class="form-group"><label>WhatsApp</label><input required id="a_tel" type="tel" placeholder="+34..." /></div>
+        </div>
+        <div class="form-group"><label>Ciudad / Oficina</label><input required id="a_ciudad" type="text" placeholder="Ej: Madrid Barajas" /></div>
+        <div class="form-row">
+          <div class="form-group"><label>Retiro</label><input required id="a_pick" type="date" /></div>
+          <div class="form-group"><label>Devolución</label><input required id="a_drop" type="date" /></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Edad del conductor</label>
+            <select id="a_edad">
+              <option>25+</option><option>21–24</option>
+            </select>
+          </div>
+          <div class="form-group"><label>Tipo de vehículo (opcional)</label><input id="a_tipo" type="text" placeholder="Económico, SUV, 7 plazas..." /></div>
+        </div>
+        <div class="form-group">
+          <label>Notas (opcional)</label>
+          <textarea id="a_notas" rows="3" placeholder="Asientos niños, seguro, kilometraje..."></textarea>
+        </div>
+        <div class="form-submit-row">
+          <p style="font-size:10px;color:#999;">Al enviar aceptas privacidad y contacto por WhatsApp.</p>
+          <button class="btn-primary" type="submit" style="padding:10px 20px;">Enviar por WhatsApp</button>
+        </div>
+      </form>
+    </section>
+
+    <aside class="aside-section">
+      <div class="aside-box">
+        <h4 style="font-size:16px;margin-top:0;">Incluye</h4>
+        <ul style="padding-left:20px;font-size:14px;color:#555;">
+          <li>Asistencia 24/7</li><li>Opciones de seguro</li><li>Entregas en aeropuerto</li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<footer><div class="container"><p>© <span id="year"></span> Reservas Online</p></div></footer>
+
+<script src="app.js"></script>
+<script>
+  setMinToday('#a_pick, #a_drop');
+  document.getElementById('autoForm')?.addEventListener('submit', (e)=>{
+    e.preventDefault();
+    const g = id => document.getElementById(id)?.value?.trim() || '';
+    if (g('a_drop') && g('a_pick') && g('a_drop') < g('a_pick')) {
+      alert('La devolución no puede ser anterior al retiro.'); return;
+    }
+    const kv = [
+      ['Nombre', g('a_nombre')], ['WhatsApp', g('a_tel')],
+      ['Servicio', 'Autos'], ['Ciudad/Oficina', g('a_ciudad')],
+      ['Retiro', g('a_pick')], ['Devolución', g('a_drop')],
+      ['Edad', g('a_edad')], ['Tipo', g('a_tipo')],
+      ['Notas', g('a_notas')]
+    ];
+    openWhatsAppFromPayload('Solicitud de Auto', kv);
+  });
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
 
