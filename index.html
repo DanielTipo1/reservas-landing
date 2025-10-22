@@ -1,3 +1,51 @@
+<!-- En tu <head> -->
+<link rel="stylesheet" href="styles.css" />
+
+<!-- En tu header actual: reemplaza el nav -->
+<nav>
+  <a href="index.html#servicios">Servicios</a>
+  <a href="hoteles.html">Hoteles</a>
+  <a href="autos.html">Autos</a>
+  <a href="paquetes.html">Paquetes</a>
+  <a href="index.html#faq">FAQ</a>
+</nav>
+
+<!-- Al final del body -->
+<script src="app.js"></script>
+<script>
+  // Botones de “¿Qué quieres reservar?” siguen seteando el select y anclan al form
+  document.querySelectorAll('.service-btn').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const v = btn.getAttribute('data-service');
+      const map = {vuelos:'Vuelos', paquetes:'Paquetes', hoteles:'Hoteles', autos:'Autos'};
+      const sel = document.getElementById('servicio');
+      if (sel) sel.value = map[v] || 'Vuelos';
+      window.location.hash = '#form';
+    });
+  });
+
+  // Fechas mínimas
+  setMinToday('#fechaIda, #fechaVuelta');
+
+  // Envío a WhatsApp (igual que ya tenías, pero usando app.js)
+  document.getElementById('bookingForm')?.addEventListener('submit', (e)=>{
+    e.preventDefault();
+    const d = id => document.getElementById(id)?.value?.trim() || '';
+    const kv = [
+      ['Nueva solicitud de reserva',''],
+      ['Nombre', d('nombre')],
+      ['WhatsApp', d('telefono')],
+      ['Servicio', d('servicio')],
+      ['Pasajeros', d('pasajeros')],
+      ['Origen', d('origen')],
+      ['Destino', d('destino')],
+      ['Fecha ida', d('fechaIda')],
+      ['Fecha regreso', d('fechaVuelta')],
+      ['Notas', d('notas')]
+    ];
+    openWhatsAppFromPayload('Nueva solicitud de reserva', kv.slice(1));
+  });
+</script>
 <!doctype html>
 <html lang="es">
 <head>
@@ -254,3 +302,4 @@
   </script>
 </body>
 </html>
+
