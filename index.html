@@ -5,166 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Reservas Online | Envío directo a WhatsApp</title>
   <meta name="description" content="Reserva en minutos y confirma por WhatsApp. Vuelos, paquetes, hoteles y autos. Sin fricción." />
-  <style>
-    /* ====== Base / Tokens ====== */
-    :root{
-      --bg:#F6F8FB;
-      --surface:#FFFFFF;
-      --ink:#0F172A;
-      --muted:#64748B;
-      --line:#E2E8F0;
-      --primary:#0EA5E9;
-      --primary-600:#0284C7;
-      --success:#22C55E;
-      --warning:#F59E0B;
-      --radius-sm:8px;
-      --radius-md:12px;
-      --radius-lg:18px;
-      --shadow-sm:0 1px 2px rgba(16,24,40,.06);
-      --shadow-md:0 8px 24px rgba(15,23,42,.08);
-      --shadow-lg:0 30px 60px rgba(2,8,23,.12);
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Inter, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
-      margin:0; color:var(--ink); background:var(--bg); line-height:1.6;
-      -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
-    }
-    img{max-width:100%; display:block}
-    a{color:var(--primary); text-decoration:none}
-    a:hover{color:var(--primary-600)}
-    .container{max-width:1000px; margin:0 auto; padding:0 16px}
-
-    /* ====== Header / Nav ====== */
-    header{
-      position:sticky; top:0; z-index:50;
-      background:rgba(255,255,255,.92); backdrop-filter:saturate(180%) blur(8px);
-      border-bottom:1px solid var(--line);
-    }
-    header .container{display:flex; align-items:center; justify-content:space-between; padding:12px 16px}
-    header nav{display:flex; gap:24px; align-items:center}
-    header nav a{color:var(--muted); font-weight:500;}
-    header nav a:hover{color:var(--ink)}
-    .btn-primary{
-      background:var(--primary);
-      color:#fff; padding:10px 18px; border-radius:9999px; display:inline-block;
-      font-weight:700; box-shadow:var(--shadow-sm); border:1px solid transparent;
-      transition:transform .05s ease, background .2s ease, box-shadow .2s ease;
-    }
-    .btn-primary:hover{background:var(--primary-600); box-shadow:var(--shadow-md)}
-    .btn-primary:active{transform:translateY(1px)}
-    .btn-ghost{
-      background:#fff; border:1px solid var(--line); color:var(--ink);
-      padding:10px 14px; border-radius:9999px; font-weight:600;
-    }
-    .badge{display:inline-block; padding:6px 10px; border-radius:9999px; font-size:12px; font-weight:600}
-
-    /* ====== Hero ====== */
-    .hero{
-      padding:56px 0 32px; margin-bottom:24px;
-      background:linear-gradient(180deg,#E7F6FE 0%, #F6F8FB 100%);
-      text-align:center;
-    }
-    .hero .hero-box{
-      background:var(--surface);
-      border:1px solid var(--line);
-      border-radius:24px;
-      padding:28px 24px;
-      max-width:720px;
-      margin:0 auto;
-      box-shadow:var(--shadow-lg);
-      text-align:left;
-    }
-    .hero h1{font-size:36px; line-height:1.2; margin:0 0 8px}
-    .hero h2{font-size:16px; color:var(--muted); font-weight:500; margin:8px 0 0}
-    .badge-row{margin-top:18px; display:flex; gap:8px; flex-wrap:wrap}
-    .badge-24{background:#E8FFF0; color:#15803D}
-    .badge-best{background:#E0F2FE; color:#0369A1}
-    .badge-fast{background:#FEF3C7; color:#B45309}
-    .hero .cta-wrap{margin-top:18px}
-
-    /* ====== Service grid (cards) ====== */
-    .section-title{font-size:24px; margin:0 0 6px}
-    .text-muted{color:var(--muted)}
-    .service-grid{display:flex; flex-wrap:wrap; gap:16px; margin-top:16px; justify-content:center}
-    .service-btn{
-      background:var(--surface); border:1px solid var(--line);
-      padding:16px; border-radius:16px; flex:1 1 220px; cursor:pointer;
-      transition:transform .08s ease, box-shadow .2s ease, border-color .2s ease;
-      box-shadow:var(--shadow-sm);
-      text-align:left;
-    }
-    .service-btn:hover{transform:translateY(-2px); border-color:var(--primary); box-shadow:var(--shadow-md)}
-    .service-btn div{font-size:16px; font-weight:800}
-    .service-btn p{font-size:14px; color:var(--muted); margin:6px 0 0}
-
-    /* ====== Main / Cards ====== */
-    .main-content{display:flex; gap:28px; margin-top:20px}
-    .form-section{
-      flex:2; background:var(--surface); padding:24px; border-radius:16px;
-      box-shadow:var(--shadow-md); border:1px solid var(--line);
-    }
-    .aside-section{flex:1}
-    .aside-box{
-      background:var(--surface); padding:20px; border-radius:16px;
-      margin-bottom:20px; box-shadow:var(--shadow-sm); border:1px solid var(--line);
-    }
-
-    /* ====== Forms ====== */
-    .form-group{margin-bottom:14px}
-    .form-group label{display:block; font-weight:700; font-size:13px; color:#0B1220; margin-bottom:6px}
-    .form-group input,
-    .form-group select,
-    .form-group textarea{
-      width:100%; padding:12px 12px; font-size:14px; color:var(--ink);
-      background:#fff; border:1px solid var(--line); border-radius:12px;
-      outline:none; transition:border-color .15s ease, box-shadow .15s ease;
-    }
-    .form-group textarea{resize:vertical; min-height:96px}
-    .form-group input:focus,
-    .form-group select:focus,
-    .form-group textarea:focus{
-      border-color:var(--primary); box-shadow:0 0 0 3px rgba(14,165,233,.18);
-    }
-    .form-row{display:flex; gap:18px}
-    .form-row>div{flex:1}
-    .form-submit-row{
-      display:flex; justify-content:space-between; align-items:center; gap:16px; margin-top:18px;
-    }
-    .form-submit-row p{margin:0; color:#8A92A6}
-
-    /* ====== FAQ ====== */
-    .faq-section{background:var(--surface); border-top:1px solid var(--line); padding:32px 0; margin-top:24px}
-    .faq-section h3{font-size:24px; margin:0 0 8px}
-    .faq-details{border-top:1px solid var(--line); padding:14px 0}
-    .faq-details summary{font-weight:700; cursor:pointer; list-style:none; display:flex; align-items:center; justify-content:space-between}
-    .faq-details summary::-webkit-details-marker{display:none}
-    .faq-details p{font-size:14px; color:var(--muted); margin:10px 0 0}
-
-    /* ====== Footer ====== */
-    footer{text-align:center; padding:22px 0; font-size:12px; color:#94A3B8}
-
-    /* ====== Responsive ====== */
-    @media (max-width: 900px){
-      .hero h1{font-size:30px}
-    }
-    @media (max-width: 768px){
-      header nav{gap:16px}
-      .main-content{flex-direction:column}
-      .form-row{flex-direction:column}
-      .hero .hero-box{padding:22px}
-    }
-  </style>
+  
+  <link rel="stylesheet" href="styles.css" />
+  <script src="app.js" defer></script>
 </head>
 <body>
-  <!-- Header -->
+
   <header>
     <div class="container">
-      <div style="display:flex;align-items:center;gap:10px;">
-        <div style="width:32px;height:32px;border-radius:50%;background-color:#0ea5e9;"></div>
-        <span style="font-weight:700;">Reservas</span>
-      </div>
+      <a href="/" class="logo">
+        <div class="logo-icon"></div>
+        <span class="logo-text">Reservas</span>
+      </a>
       <nav>
         <a href="#servicios">Servicios</a>
         <a href="#beneficios">Beneficios</a>
@@ -174,230 +26,159 @@
     </div>
   </header>
 
-  <!-- Hero -->
-  <section class="hero">
-    <div class="hero-box">
-      <h1>Reserva en minutos.<br/>Confirmación por WhatsApp.</h1>
-      <h2>Vuelos, paquetes, hoteles y autos. Sin fricción, estilo Trip/Booking, con cierre directo por WhatsApp.</h2>
-
-      <div class="badge-row">
-        <span class="badge badge-24">24/7</span>
-        <span class="badge badge-best">Mejor precio</span>
-        <span class="badge badge-fast">Confirmación rápida</span>
-      </div>
-
-      <div class="cta-wrap">
-        <a href="#form" class="btn-primary">Iniciar reserva →</a>
-      </div>
-    </div>
-  </section>
-
-  <div class="container">
-    <!-- Servicios -->
-    <section id="servicios" style="padding-top: 6px;">
-      <h2 class="section-title">¿Qué quieres reservar?</h2>
-      <p class="text-muted" style="margin-top:-4px">Selecciona y baja al formulario.</p>
-      <div class="service-grid">
-        <button data-service="vuelos" class="service-btn">
-          <div>✈️ Vuelos</div>
-          <p>Chárter y regulares</p>
-        </button>
-        <button data-service="paquetes" class="service-btn">
-          <div>🧳 Paquetes</div>
-          <p>Tour + hotel + traslados</p>
-        </button>
-        <button data-service="hoteles" class="service-btn">
-          <div>🏨 Hoteles</div>
-          <p>Todas las categorías</p>
-        </button>
-        <button data-service="autos" class="service-btn">
-          <div>🚗 Autos</div>
-          <p>Con o sin chofer</p>
-        </button>
-      </div>
-    </section>
-
-    <!-- Form + Aside -->
-    <section id="form" style="padding-bottom: 30px;">
-      <div class="main-content">
-        <div class="form-section">
-          <h3 style="font-size:20px; margin-bottom: 5px;">Completa tu solicitud</h3>
-          <p class="text-muted" style="margin-bottom: 20px;">Te responderemos por WhatsApp con disponibilidad y precio.</p>
-
-          <form id="bookingForm">
-            <div class="form-row">
-              <div class="form-group">
-                <label>Nombre y Apellido</label>
-                <input required type="text" id="nombre" placeholder="Tu nombre" />
-              </div>
-              <div class="form-group">
-                <label>WhatsApp</label>
-                <input required type="tel" id="telefono" placeholder="Ej: +34 600 000 000" />
-              </div>
-            </div>
-
-            <div class="form-row">
-              <div class="form-group">
-                <label>Servicio</label>
-                <select id="servicio">
-                  <option value="Vuelos">Vuelos</option>
-                  <option value="Paquetes">Paquetes</option>
-                  <option value="Hoteles">Hoteles</option>
-                  <option value="Autos">Autos</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label>Pasajeros</label>
-                <input required type="number" id="pasajeros" min="1" value="1" />
-              </div>
-            </div>
-
-            <div class="form-row">
-              <div class="form-group">
-                <label>Origen</label>
-                <input required type="text" id="origen" placeholder="Ciudad de salida" />
-              </div>
-              <div class="form-group">
-                <label>Destino</label>
-                <input required type="text" id="destino" placeholder="Ciudad de llegada" />
-              </div>
-            </div>
-
-            <div class="form-row">
-              <div class="form-group">
-                <label>Fecha ida</label>
-                <input required type="date" id="fechaIda" />
-              </div>
-              <div class="form-group">
-                <label>Fecha regreso (opcional)</label>
-                <input type="date" id="fechaVuelta" />
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label>Notas (opcional)</label>
-              <textarea id="notas" rows="3" placeholder="Equipaje, preferencias, horarios, aerolíneas…"></textarea>
-            </div>
-
-            <div class="form-submit-row">
-              <p>Al enviar aceptas la política de privacidad y el contacto por WhatsApp.</p>
-              <button type="submit" class="btn-primary">Enviar por WhatsApp</button>
-            </div>
-          </form>
+  <main>
+    <section class="hero">
+      <div class="hero-box">
+        <h1>Reserva en minutos.<br/>Confirmación por WhatsApp.</h1>
+        <h2>Vuelos, paquetes, hoteles y autos. Sin fricción, estilo Trip/Booking, con cierre directo por WhatsApp.</h2>
+        <div class="badge-row">
+          <span class="badge badge-24">24/7</span>
+          <span class="badge badge-best">Mejor precio</span>
+          <span class="badge badge-fast">Confirmación rápida</span>
         </div>
-
-        <aside class="aside-section">
-          <div class="aside-box" id="beneficios">
-            <h4 style="font-size:16px; margin-top: 0;">Beneficios</h4>
-            <ul style="padding-left: 20px; font-size: 14px; color: #555;">
-              <li>Precios dinámicos y ofertas</li>
-              <li>Atención humana 24/7 por WhatsApp</li>
-              <li>Pagos seguros y flexibles</li>
-              <li>Gestión de cambios y asistencia</li>
-            </ul>
-          </div>
-          <div class="aside-box">
-            <h4 style="font-size:16px; margin-top: 0;">Confianza</h4>
-            <div style="margin-top: 10px; color: #15803D; font-size: 14px;">
-              <span>⭐️⭐️⭐️⭐️⭐️</span>
-              <span>4.9/5 · +1.500 viajeros</span>
-            </div>
-            <p style="margin-top: 5px; font-size: 12px; color: #999;">Reseñas verificadas y soporte real.</p>
-          </div>
-        </aside>
+        <div class="cta-wrap">
+          <a href="#form" class="btn-primary">Iniciar reserva →</a>
+        </div>
       </div>
     </section>
-  </div>
 
-  <!-- FAQ -->
-  <section id="faq" class="faq-section">
+    <div class="container">
+      <section id="servicios" class="section">
+        <h2 class="section-title">¿Qué quieres reservar?</h2>
+        <p class="text-muted section-subtitle">Selecciona y baja al formulario.</p>
+        <div class="service-grid">
+          <button data-service="vuelos" class="service-btn">
+            <div>✈️ Vuelos</div>
+            <p>Chárter y regulares</p>
+          </button>
+          <button data-service="paquetes" class="service-btn">
+            <div>🧳 Paquetes</div>
+            <p>Tour + hotel + traslados</p>
+          </button>
+          <button data-service="hoteles" class="service-btn">
+            <div>🏨 Hoteles</div>
+            <p>Todas las categorías</p>
+          </button>
+          <button data-service="autos" class="service-btn">
+            <div>🚗 Autos</div>
+            <p>Con o sin chofer</p>
+          </button>
+        </div>
+      </section>
+
+      <section id="form" class="section">
+        <div class="main-content">
+          <div class="form-section">
+            <h3 class="form-title">Completa tu solicitud</h3>
+            <p class="text-muted section-subtitle">Te responderemos por WhatsApp con disponibilidad y precio.</p>
+
+            <form id="bookingForm">
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Nombre y Apellido</label>
+                  <input required type="text" id="nombre" placeholder="Tu nombre" />
+                </div>
+                <div class="form-group">
+                  <label>WhatsApp</label>
+                  <input required type="tel" id="telefono" placeholder="Ej: +34 600 000 000" />
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Servicio</label>
+                  <select id="servicio">
+                    <option value="Vuelos">Vuelos</option>
+                    <option value="Paquetes">Paquetes</option>
+                    <option value="Hoteles">Hoteles</option>
+                    <option value="Autos">Autos</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Pasajeros</label>
+                  <input required type="number" id="pasajeros" min="1" value="1" />
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Origen</label>
+                  <input required type="text" id="origen" placeholder="Ciudad de salida" />
+                </div>
+                <div class="form-group">
+                  <label>Destino</label>
+                  <input required type="text" id="destino" placeholder="Ciudad de llegada" />
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Fecha ida</label>
+                  <input required type="date" id="fechaIda" />
+                </div>
+                <div class="form-group">
+                  <label>Fecha regreso (opcional)</label>
+                  <input type="date" id="fechaVuelta" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Notas (opcional)</label>
+                <textarea id="notas" rows="3" placeholder="Equipaje, preferencias, horarios, aerolíneas…"></textarea>
+              </div>
+              <div class="form-submit-row">
+                <p>Al enviar aceptas la política de privacidad y el contacto por WhatsApp.</p>
+                <button type="submit" class="btn-primary">Enviar por WhatsApp</button>
+              </div>
+            </form>
+          </div>
+
+          <aside class="aside-section">
+            <div class="aside-box" id="beneficios">
+              <h4 class="aside-title">Beneficios</h4>
+              <ul class="benefit-list">
+                <li>Precios dinámicos y ofertas</li>
+                <li>Atención humana 24/7 por WhatsApp</li>
+                <li>Pagos seguros y flexibles</li>
+                <li>Gestión de cambios y asistencia</li>
+              </ul>
+            </div>
+            <div class="aside-box">
+              <h4 class="aside-title">Confianza</h4>
+              <div class="trust-rating">
+                <span class="trust-stars">⭐️⭐️⭐️⭐️⭐️</span>
+                <span class="trust-score">4.9/5 · +1.500 viajeros</span>
+              </div>
+              <p class="trust-caption">Reseñas verificadas y soporte real.</p>
+            </div>
+          </aside>
+        </div>
+      </section>
+    </div> </main> <section id="faq" class="faq-section">
     <div class="container">
       <h3>Preguntas frecuentes</h3>
       <div>
         <details class="faq-details">
-          <summary>¿Cómo confirmo la reserva? <span>▾</span></summary>
+          <summary>¿Cómo confirmo la reserva? <span class="faq-icon">▾</span></summary>
           <p>Nos envías los datos por WhatsApp, validamos disponibilidad y precio, y te enviamos el link de pago o instrucciones.</p>
         </details>
         <details class="faq-details">
-          <summary>¿Puedo pagar en varias cuotas? <span>▾</span></summary>
+          <summary>¿Puedo pagar en varias cuotas? <span class="faq-icon">▾</span></summary>
           <p>Sí, según el servicio. Te daremos opciones seguras de pago.</p>
         </details>
         <details class="faq-details">
-          <summary>¿Emiten factura? <span>▾</span></summary>
+          <summary>¿Emiten factura? <span class="faq-icon">▾</span></summary>
           <p>Claro. Te solicitaremos los datos fiscales al confirmar.</p>
         </details>
       </div>
     </div>
   </section>
 
-  <!-- Footer -->
   <footer>
     <div class="container">
       <p>© <span id="year"></span> Reservas Online — Todos los derechos reservados.</p>
-      <div style="margin-top: 5px;">
-        <a href="#" style="color:#94A3B8;">Política de privacidad</a> ·
-        <a href="#" style="color:#94A3B8;">Términos</a>
+      <div class="footer-links">
+        <a href="#">Política de privacidad</a> ·
+        <a href="#">Términos</a>
       </div>
     </div>
   </footer>
 
-  <script>
-    // === Configuración ===
-    // Reemplaza con tu número WhatsApp (código país + número, sin + ni espacios)
-    const WHATSAPP_NUMBER = "34675570566";
-
-    // Utilidades
-    const todayISO = new Date().toISOString().split('T')[0];
-    function setMinToday(selector){
-      document.querySelectorAll(selector).forEach(el=>el.setAttribute('min', todayISO));
-    }
-    function openWhatsAppFromPayload(title, kvPairs){
-      const lines = kvPairs.map(([k,v])=>`${k}: ${v && String(v).trim() ? String(v).trim() : '-'}`).join('%0A');
-      const txt = `${encodeURIComponent(title)}%0A${lines}`;
-      const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${txt}`;
-      window.open(url, '_blank');
-    }
-
-    // Botones de servicios → setean el select del formulario
-    document.querySelectorAll('.service-btn').forEach(btn=>{
-      btn.addEventListener('click',()=>{
-        const v = btn.getAttribute('data-service');
-        const map = {vuelos:'Vuelos', paquetes:'Paquetes', hoteles:'Hoteles', autos:'Autos'};
-        const sel = document.getElementById('servicio');
-        if (sel) sel.value = map[v] || 'Vuelos';
-        window.location.hash = '#form';
-      });
-    });
-
-    // Fechas mínimas
-    setMinToday('#fechaIda, #fechaVuelta');
-
-    // Envío a WhatsApp
-    document.getElementById('bookingForm')?.addEventListener('submit', (e)=>{
-      e.preventDefault();
-      const d = id => document.getElementById(id)?.value?.trim() || '';
-      if (d('fechaVuelta') && d('fechaIda') && d('fechaVuelta') < d('fechaIda')){
-        alert('La fecha de regreso no puede ser anterior a la ida.');
-        return;
-      }
-      const kv = [
-        ['Nombre', d('nombre')],
-        ['WhatsApp', d('telefono')],
-        ['Servicio', d('servicio')],
-        ['Pasajeros', d('pasajeros')],
-        ['Origen', d('origen')],
-        ['Destino', d('destino')],
-        ['Fecha ida', d('fechaIda')],
-        ['Fecha regreso', d('fechaVuelta')],
-        ['Notas', d('notas')]
-      ];
-      openWhatsAppFromPayload('Nueva solicitud de reserva', kv);
-    });
-
-    // Año footer
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
 </body>
 </html>
-
-
