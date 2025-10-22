@@ -1,102 +1,362 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Paquetes | Reservas Online</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta name="description" content="Paquetes a Cuba, República Dominicana, Colombia, Venezuela y Miami. Vuelos + hotel + traslados. Confirmación por WhatsApp." />
+  <style>
+    /* ====== Base / Tokens ====== */
+    :root{
+      --bg:#F6F8FB; --surface:#FFFFFF; --ink:#0F172A; --muted:#64748B; --line:#E2E8F0;
+      --primary:#0EA5E9; --primary-600:#0284C7; --success:#22C55E; --warning:#F59E0B;
+      --shadow-sm:0 1px 2px rgba(16,24,40,.06);
+      --shadow-md:0 8px 24px rgba(15,23,42,.08);
+      --shadow-lg:0 30px 60px rgba(2,8,23,.12);
+    }
+    *{box-sizing:border-box} html,body{height:100%}
+    body{font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Inter,Arial,"Noto Sans","Helvetica Neue",sans-serif;margin:0;color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+    a{color:var(--primary);text-decoration:none} a:hover{color:var(--primary-600)}
+    img{max-width:100%;display:block} .container{max-width:1000px;margin:0 auto;padding:0 16px}
+
+    /* Header */
+    header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:saturate(180%) blur(8px);border-bottom:1px solid var(--line)}
+    header .container{display:flex;align-items:center;justify-content:space-between;padding:12px 16px}
+    header nav{display:flex;gap:24px;align-items:center}
+    header nav a{color:var(--muted);font-weight:500} header nav a:hover{color:var(--ink)}
+
+    /* Buttons */
+    .btn-primary{background:var(--primary);color:#fff;padding:10px 18px;border-radius:9999px;display:inline-block;font-weight:700;box-shadow:var(--shadow-sm);border:1px solid transparent;transition:.05s transform,.2s background,.2s box-shadow}
+    .btn-primary:hover{background:var(--primary-600);box-shadow:var(--shadow-md)}
+    .btn-primary:active{transform:translateY(1px)}
+    .btn-ghost{background:#fff;border:1px solid var(--line);color:var(--ink);padding:10px 14px;border-radius:9999px;font-weight:600}
+    .badge{display:inline-block;padding:6px 10px;border-radius:9999px;font-size:12px;font-weight:600}
+
+    /* Hero */
+    .hero{padding:56px 0 32px;margin-bottom:24px;background:linear-gradient(180deg,#E7F6FE 0%,#F6F8FB 100%);text-align:center}
+    .hero .hero-box{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:28px 24px;max-width:720px;margin:0 auto;box-shadow:var(--shadow-lg);text-align:left}
+    .hero h1{font-size:32px;line-height:1.2;margin:0 0 6px}
+    .hero h2{font-size:16px;color:var(--muted);font-weight:500;margin:8px 0 0}
+    .badge-row{margin-top:16px;display:flex;gap:8px;flex-wrap:wrap}
+    .badge-blue{background:#E0F2FE;color:#0369A1}
+    .badge-gold{background:#FEF3C7;color:#B45309}
+
+    /* Destinos grid */
+    .section-title{font-size:24px;margin:0 0 8px}
+    .text-muted{color:var(--muted)}
+    .destinos{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px}
+    .card{background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:var(--shadow-sm);transition:.15s transform,.2s box-shadow,.2s border-color;cursor:pointer}
+    .card:hover{transform:translateY(-2px);box-shadow:var(--shadow-md);border-color:var(--primary)}
+    .card-img{position:relative;height:160px;overflow:hidden}
+    .card-img img{width:100%;height:100%;object-fit:cover}
+    .price-tag{position:absolute;right:10px;bottom:10px;background:#1d4ed8;color:#fff;font-weight:700;padding:6px 10px;border-radius:9999px;font-size:12px}
+    .card-body{padding:12px 14px}
+    .card-title{font-weight:800;font-size:16px;margin:0 0 4px}
+    .card-sub{color:var(--muted);font-size:13px;margin:0}
+
+    /* Main columns */
+    .main-content{display:flex;gap:28px;margin-top:24px}
+    .form-section{flex:2;background:var(--surface);padding:24px;border-radius:16px;box-shadow:var(--shadow-md);border:1px solid var(--line)}
+    .aside-section{flex:1}
+    .aside-box{background:var(--surface);padding:20px;border-radius:16px;margin-bottom:20px;box-shadow:var(--shadow-sm);border:1px solid var(--line)}
+
+    /* Form */
+    .form-group{margin-bottom:14px}
+    .form-group label{display:block;font-weight:700;font-size:13px;color:#0B1220;margin-bottom:6px}
+    .form-group input,.form-group select,.form-group textarea{width:100%;padding:12px 12px;font-size:14px;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:12px;outline:none;transition:.15s border-color,.15s box-shadow}
+    .form-group textarea{resize:vertical;min-height:96px}
+    .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(14,165,233,.18)}
+    .form-row{display:flex;gap:18px} .form-row>div{flex:1}
+    .form-submit-row{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-top:18px}
+    .form-submit-row p{margin:0;color:#8A92A6}
+
+    /* FAQ / Footer */
+    .faq-section{background:var(--surface);border-top:1px solid var(--line);padding:32px 0;margin-top:24px}
+    .faq-section h3{font-size:24px;margin:0 0 8px}
+    .faq-details{border-top:1px solid var(--line);padding:14px 0}
+    .faq-details summary{font-weight:700;cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between}
+    .faq-details summary::-webkit-details-marker{display:none}
+    .faq-details p{font-size:14px;color:var(--muted);margin:10px 0 0}
+    footer{text-align:center;padding:22px 0;font-size:12px;color:#94A3B8}
+
+    /* Responsive */
+    @media (max-width:980px){.destinos{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:720px){
+      .main-content{flex-direction:column}
+      .form-row{flex-direction:column}
+      .destinos{grid-template-columns:1fr}
+      .hero .hero-box{padding:22px}
+    }
+  </style>
 </head>
 <body>
-<header>
-  <div class="container" style="display:flex;justify-content:space-between;align-items:center;">
-    <div style="display:flex;align-items:center;gap:10px;">
-      <div style="width:32px;height:32px;border-radius:50%;background-color:#0ea5e9;"></div>
-      <span style="font-weight:bold;">Reservas · Paquetes</span>
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div style="width:32px;height:32px;border-radius:50%;background-color:#0ea5e9;"></div>
+        <span style="font-weight:700;">Reservas · Paquetes</span>
+      </div>
+      <nav>
+        <a href="index.html">Inicio</a>
+        <a href="hoteles.html">Hoteles</a>
+        <a href="autos.html">Autos</a>
+        <a href="paquetes.html">Paquetes</a>
+      </nav>
+      <a href="#form" class="btn-primary">Solicitar</a>
     </div>
-    <nav>
-      <a href="index.html">Inicio</a>
-      <a href="hoteles.html">Hoteles</a>
-      <a href="autos.html">Autos</a>
-      <a href="paquetes.html">Paquetes</a>
-    </nav>
-    <a href="#form" class="btn-primary">Solicitar</a>
-  </div>
-</header>
+  </header>
 
-<section class="hero" style="background-color:#87CEEB;">
-  <div class="hero-box">
-    <h1>TOUR + HOTEL + TRASLADOS.</h1>
-    <h2>Itinerario a medida. Cierre por WhatsApp.</h2>
-    <a href="#form" class="btn-primary" style="margin-top:20px;padding:12px 25px;">Cotizar paquete →</a>
-  </div>
-</section>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-box">
+      <h1>Paquetes con todo incluido.</h1>
+      <h2>Vuelos + hotel + traslados + asistencia. Confirmación por WhatsApp.</h2>
+      <div class="badge-row">
+        <span class="badge badge-blue">Mejor precio</span>
+        <span class="badge badge-gold">Confirmación rápida</span>
+      </div>
+      <div style="margin-top:16px;">
+        <a href="#form" class="btn-primary">Cotizar ahora →</a>
+      </div>
+    </div>
+  </section>
 
-<main class="container">
-  <div class="main-content">
-    <section class="form-section" id="form">
-      <h3 style="font-size:20px;margin-bottom:5px;">Solicitud de Paquete</h3>
-      <p style="font-size:14px;color:#666;margin-bottom:20px;">Indica destino, fechas y presupuesto objetivo.</p>
+  <main class="container">
+    <!-- Destinos destacados -->
+    <section>
+      <h2 class="section-title">Destinos destacados</h2>
+      <p class="text-muted" style="margin-top:-4px">Haz clic para prellenar el formulario.</p>
 
-      <form id="packForm">
-        <div class="form-row">
-          <div class="form-group"><label>Nombre y Apellido</label><input required id="p_nombre" type="text" /></div>
-          <div class="form-group"><label>WhatsApp</label><input required id="p_tel" type="tel" placeholder="+34..." /></div>
-        </div>
-        <div class="form-row">
-          <div class="form-group"><label>Destino</label><input required id="p_destino" type="text" placeholder="Ciudad / país" /></div>
-          <div class="form-group"><label>Pasajeros</label><input required id="p_pax" type="number" min="1" value="2" /></div>
-        </div>
-        <div class="form-row">
-          <div class="form-group"><label>Fecha salida</label><input required id="p_out" type="date" /></div>
-          <div class="form-group"><label>Fecha regreso</label><input required id="p_back" type="date" /></div>
-        </div>
-        <div class="form-row">
-          <div class="form-group"><label>Hotel/Categoría (opcional)</label><input id="p_hotel" type="text" placeholder="3★ / 4★ / 5★ / hotel preferido" /></div>
-          <div class="form-group"><label>Presupuesto estimado (opcional)</label><input id="p_budget" type="text" placeholder="€ por persona / total" /></div>
-        </div>
-        <div class="form-group">
-          <label>Notas (opcional)</label>
-          <textarea id="p_notas" rows="3" placeholder="Intereses, tours, traslados, seguro..."></textarea>
-        </div>
-        <div class="form-submit-row">
-          <p style="font-size:10px;color:#999;">Al enviar aceptas privacidad y contacto por WhatsApp.</p>
-          <button class="btn-primary" type="submit" style="padding:10px 20px;">Enviar por WhatsApp</button>
-        </div>
-      </form>
+      <div class="destinos">
+        <!-- CUBA -->
+        <article class="card" data-destino="Cuba" data-noches="7" data-salida="" data-regreso="">
+          <div class="card-img">
+            <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop" alt="Cuba" />
+            <span class="price-tag">desde 699 €</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">Cuba</h3>
+            <p class="card-sub">La Habana · Varadero · Cayo Santa María</p>
+          </div>
+        </article>
+
+        <!-- REP. DOMINICANA -->
+        <article class="card" data-destino="República Dominicana" data-noches="7">
+          <div class="card-img">
+            <img src="https://images.unsplash.com/photo-1543353071-10c8ba85a904?q=80&w=1200&auto=format&fit=crop" alt="República Dominicana" />
+            <span class="price-tag">desde 749 €</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">República Dominicana</h3>
+            <p class="card-sub">Punta Cana · Bayahíbe · La Romana</p>
+          </div>
+        </article>
+
+        <!-- COLOMBIA -->
+        <article class="card" data-destino="Colombia" data-noches="7">
+          <div class="card-img">
+            <img src="https://images.unsplash.com/photo-1544989164-31dc3c645987?q=80&w=1200&auto=format&fit=crop" alt="Colombia" />
+            <span class="price-tag">desde 679 €</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">Colombia</h3>
+            <p class="card-sub">Cartagena · Bogotá · Medellín</p>
+          </div>
+        </article>
+
+        <!-- VENEZUELA -->
+        <article class="card" data-destino="Venezuela" data-noches="7">
+          <div class="card-img">
+            <img src="https://images.unsplash.com/photo-1604266070429-940baf2c7f6d?q=80&w=1200&auto=format&fit=crop" alt="Venezuela" />
+            <span class="price-tag">desde 729 €</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">Venezuela</h3>
+            <p class="card-sub">Isla Margarita · Caracas · Los Roques</p>
+          </div>
+        </article>
+
+        <!-- MIAMI -->
+        <article class="card" data-destino="Miami" data-noches="5">
+          <div class="card-img">
+            <img src="https://images.unsplash.com/photo-1496523720220-b62e33cf3161?q=80&w=1200&auto=format&fit=crop" alt="Miami" />
+            <span class="price-tag">desde 599 €</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">Miami</h3>
+            <p class="card-sub">South Beach · Downtown · Wynwood</p>
+          </div>
+        </article>
+      </div>
     </section>
 
-    <aside class="aside-section">
-      <div class="aside-box">
-        <h4 style="font-size:16px;margin-top:0;">Incluye (ejemplo)</h4>
-        <ul style="padding-left:20px;font-size:14px;color:#555;">
-          <li>Vuelos + hotel + traslados</li><li>Asistencia 24/7</li><li>Seguro opcional</li>
-        </ul>
+    <!-- Form + Aside -->
+    <section id="form" class="main-content">
+      <div class="form-section">
+        <h3 style="font-size:20px;margin-bottom:5px;">Solicitud de Paquete</h3>
+        <p class="text-muted" style="margin-bottom:20px;">Indica destino, fechas y presupuesto objetivo.</p>
+
+        <form id="packForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Nombre y Apellido</label>
+              <input required id="p_nombre" type="text" />
+            </div>
+            <div class="form-group">
+              <label>WhatsApp</label>
+              <input required id="p_tel" type="tel" placeholder="+34..." />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Destino</label>
+              <input required id="p_destino" type="text" placeholder="Ciudad / país" />
+            </div>
+            <div class="form-group">
+              <label>Pasajeros</label>
+              <input required id="p_pax" type="number" min="1" value="2" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Fecha salida</label>
+              <input required id="p_out" type="date" />
+            </div>
+            <div class="form-group">
+              <label>Fecha regreso</label>
+              <input required id="p_back" type="date" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Hotel/Categoría (opcional)</label>
+              <input id="p_hotel" type="text" placeholder="3★ / 4★ / 5★ / hotel preferido" />
+            </div>
+            <div class="form-group">
+              <label>Presupuesto estimado (opcional)</label>
+              <input id="p_budget" type="text" placeholder="€ por persona / total" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Notas (opcional)</label>
+            <textarea id="p_notas" rows="3" placeholder="Intereses, tours, traslados, seguro..."></textarea>
+          </div>
+
+          <div class="form-submit-row">
+            <p>Al enviar aceptas privacidad y contacto por WhatsApp.</p>
+            <button class="btn-primary" type="submit">Enviar por WhatsApp</button>
+          </div>
+        </form>
       </div>
-    </aside>
-  </div>
-</main>
 
-<footer><div class="container"><p>© <span id="year"></span> Reservas Online</p></div></footer>
+      <aside class="aside-section">
+        <div class="aside-box">
+          <h4 style="font-size:16px;margin-top:0;">Incluye (ejemplo)</h4>
+          <ul style="padding-left:20px;font-size:14px;color:#555;">
+            <li>Vuelos + hotel + traslados</li>
+            <li>Asistencia 24/7</li>
+            <li>Seguro de viaje opcional</li>
+          </ul>
+        </div>
+        <div class="aside-box">
+          <h4 style="font-size:16px;margin-top:0;">Tips</h4>
+          <ul style="padding-left:20px;font-size:14px;color:#555;">
+            <li>Mejor precio reservando con 30–45 días</li>
+            <li>Flexibilidad en fechas = más ahorro</li>
+            <li>Pide opciones 3★, 4★ y 5★</li>
+          </ul>
+        </div>
+      </aside>
+    </section>
+  </main>
 
-<script src="app.js"></script>
-<script>
-  setMinToday('#p_out, #p_back');
-  document.getElementById('packForm')?.addEventListener('submit', (e)=>{
-    e.preventDefault();
-    const g = id => document.getElementById(id)?.value?.trim() || '';
-    if (g('p_back') && g('p_out') && g('p_back') < g('p_out')) {
-      alert('La fecha de regreso no puede ser anterior a la salida.'); return;
+  <!-- FAQ -->
+  <section id="faq" class="faq-section">
+    <div class="container">
+      <h3>Preguntas frecuentes</h3>
+      <details class="faq-details">
+        <summary>¿Cómo confirmo el paquete? <span>▾</span></summary>
+        <p>Validamos disponibilidad y precio, y te enviamos el enlace de pago o instrucciones por WhatsApp.</p>
+      </details>
+      <details class="faq-details">
+        <summary>¿Puedo cambiar fechas o hotel? <span>▾</span></summary>
+        <p>Sí, según condiciones de tarifa. Te asesoramos para minimizar penalizaciones.</p>
+      </details>
+      <details class="faq-details">
+        <summary>¿Incluye seguro? <span>▾</span></summary>
+        <p>Te ofertamos seguro básico o ampliado. Puedes añadirlo al confirmar.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>© <span id="year"></span> Reservas Online — Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Configura tu número (código país + número, sin + ni espacios)
+    const WHATSAPP_NUMBER = "34675570566";
+
+    // Helpers
+    const todayISO = new Date().toISOString().split('T')[0];
+    function setMinToday(sel){ document.querySelectorAll(sel).forEach(el=>el.min=todayISO); }
+    function openWhatsApp(title, kv){
+      const lines = kv.map(([k,v])=>`${k}: ${v && String(v).trim() ? String(v).trim() : '-'}`).join('%0A');
+      const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(title)}%0A${lines}`;
+      window.open(url, '_blank');
     }
-    const kv = [
-      ['Nombre', g('p_nombre')], ['WhatsApp', g('p_tel')],
-      ['Servicio', 'Paquetes'], ['Destino', g('p_destino')],
-      ['Pasajeros', g('p_pax')], ['Salida', g('p_out')], ['Regreso', g('p_back')],
-      ['Hotel/Categoría', g('p_hotel')], ['Presupuesto', g('p_budget')],
-      ['Notas', g('p_notas')]
-    ];
-    openWhatsAppFromPayload('Solicitud de Paquete', kv);
-  });
-  document.getElementById('year').textContent = new Date().getFullYear();
-</script>
+
+    // Prefill desde tarjetas
+    document.querySelectorAll('.card').forEach(card=>{
+      card.addEventListener('click', ()=>{
+        const dest = card.getAttribute('data-destino') || '';
+        const nights = Number(card.getAttribute('data-noches')||'7');
+        // set destino
+        const destInput = document.getElementById('p_destino'); if(destInput) destInput.value = dest;
+        // fechas tentativas (hoy + 21 días / + noches)
+        const out = new Date(); out.setDate(out.getDate()+21);
+        const back = new Date(out); back.setDate(out.getDate()+nights);
+        const fmt = d => d.toISOString().split('T')[0];
+        const outEl = document.getElementById('p_out'); const backEl = document.getElementById('p_back');
+        if(outEl && backEl){ outEl.value = fmt(out); backEl.value = fmt(back); }
+        // scroll al form
+        location.hash = '#form';
+      });
+    });
+
+    // Min de fechas
+    setMinToday('#p_out,#p_back');
+
+    // Submit → WhatsApp
+    document.getElementById('packForm')?.addEventListener('submit', e=>{
+      e.preventDefault();
+      const v = id=>document.getElementById(id)?.value?.trim()||'';
+      if (v('p_back') && v('p_out') && v('p_back') < v('p_out')){
+        alert('La fecha de regreso no puede ser anterior a la salida.'); return;
+      }
+      const kv = [
+        ['Nombre', v('p_nombre')], ['WhatsApp', v('p_tel')],
+        ['Servicio', 'Paquetes'],
+        ['Destino', v('p_destino')], ['Pasajeros', v('p_pax')],
+        ['Salida', v('p_out')], ['Regreso', v('p_back')],
+        ['Hotel/Categoría', v('p_hotel')], ['Presupuesto', v('p_budget')],
+        ['Notas', v('p_notas')]
+      ];
+      openWhatsApp('Solicitud de Paquete', kv);
+    });
+
+    // Año footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
+
 
