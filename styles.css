@@ -1,1 +1,4 @@
-
+/* Pega aquí todo tu CSS actual del <style> de index */
+/* Utilidades */
+.badge { padding: 5px 10px; border-radius: 5px; font-size: 12px; display:inline-block; }
+.container { max-width: 1000px; margin: 0 auto; padding: 0 15px; }
